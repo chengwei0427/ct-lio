@@ -1,7 +1,7 @@
 # ct-lio
 CT-LIO: Continuous-Time LiDAR-Inertial Odometry
 
-**ct-lio** (Continuous-Time LiDAR-Inertial Odometry) is an accurate and robust LiDAR-inertial odometry (LIO). It fuses LiDAR constraints(ct-icp) with IMU data using ESKF(loose couple) to allow robost localizate in fast moton (as lio-sam). Besides, we provide **analytical derivation and automatic derivation** for ct-icp, and a simple **degradation detection**.
+**ct-lio** (Continuous-Time LiDAR-Inertial Odometry) is an accurate and robust LiDAR-inertial odometry (LIO). It fuses LiDAR constraints(ct-icp) with IMU data using ESKF(loose couple) to allow robost localizate in fast motion (as lio-sam). Besides, we provide **analytical derivation and automatic derivation** for ct-icp, and a simple **degradation detection**.
 
 - [Video-Bilibili](https://www.bilibili.com/video/BV1CP411k7hE/?spm_id_from=333.999.0.0&vd_source=438f630fe29bd5049b24c7f05b1bcaa3)
   
@@ -113,7 +113,9 @@ Clone the repository and catkin_make:
 
 Files: Can be downloaded from [Baidu Pan (password:4kpf)](https://pan.baidu.com/s/1VHIVYo2LAyFKzMzdilOZlQ) or [Google Drive](https://drive.google.com/drive/folders/1f-VQOORs1TA5pT-OO_7-rG0kW5F5UoGG?usp=sharing)
 
-**Noted**: For this narrow staircases, should adjust the params(such as surf_res etc.) before run the program.
+**Noted**
+  - For this narrow staircases, should adjust the params(such as surf_res etc.) before run the program.
+  - make sure the external params are correct [ISSUE #2](https://github.com/chengwei0427/ct-lio/issues/2)
 
 Run:
 ```
