@@ -3,15 +3,22 @@ CT-LIO: Continuous-Time LiDAR-Inertial Odometry
 
 **ct-lio** (Continuous-Time LiDAR-Inertial Odometry) is an accurate and robust LiDAR-inertial odometry (LIO). It fuses LiDAR constraints(ct-icp) with IMU data using ESKF(loose couple) to allow robost localizate in fast moton (as lio-sam). Besides, provide analytical derivation and automatic derivation for ct-icp.
 
+- [Video-Bilibili](https://www.bilibili.com/video/BV1CP411k7hE/?spm_id_from=333.999.0.0&vd_source=438f630fe29bd5049b24c7f05b1bcaa3)
+  
 <img src="doc/road.gif" /> 
+
 
 ### Some test results are show below:
 
 #### Velodyne 32, NCLT dataset
 (mode:normal + eskf)
+- [Video-Bilibili](https://www.bilibili.com/video/BV15s4y1F79a/?spm_id_from=333.999.0.0&vd_source=438f630fe29bd5049b24c7f05b1bcaa3)
+
 <img src="doc/nclt.gif" /> 
 
 #### Ouster-32, multi-layer office 
+- [Video-Bilibili](https://www.bilibili.com/video/BV1g14y1U7R4/?spm_id_from=333.999.0.0&vd_source=438f630fe29bd5049b24c7f05b1bcaa3)
+  
 **Left**: ours (mode:normal + eskf)
 
 **Right**: fast-lio2
@@ -20,10 +27,14 @@ CT-LIO: Continuous-Time LiDAR-Inertial Odometry
 
 
 #### Robosense RS16, staircase_crazy_rotation dataset
+- [Video-Bilibili](https://www.bilibili.com/video/BV19m4y1E7ry/?spm_id_from=333.999.0.0&vd_source=438f630fe29bd5049b24c7f05b1bcaa3)
+
 **Left**: PV_LIO
 
 **Right**: ours (mode:normal + eskf)
 
+- [Video-Bilibili](https://www.bilibili.com/video/BV19m4y1E7ry/?spm_id_from=333.999.0.0&vd_source=438f630fe29bd5049b24c7f05b1bcaa3)
+  
 <img src="doc/mm-layer.gif"/> 
 
 
