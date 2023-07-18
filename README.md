@@ -1,7 +1,7 @@
 # ct-lio
 CT-LIO: Continuous-Time LiDAR-Inertial Odometry
 
-**ct-lio** (Continuous-Time LiDAR-Inertial Odometry) is an accurate and robust LiDAR-inertial odometry (LIO). It fuses LiDAR constraints(ct-icp) with IMU data using ESKF(loose couple) to allow robost localizate in fast moton (as lio-sam). Besides, we provide analytical derivation and automatic derivation for ct-icp, and a simple degradation detection.
+**ct-lio** (Continuous-Time LiDAR-Inertial Odometry) is an accurate and robust LiDAR-inertial odometry (LIO). It fuses LiDAR constraints(ct-icp) with IMU data using ESKF(loose couple) to allow robost localizate in fast moton (as lio-sam). Besides, we provide **analytical derivation and automatic derivation** for ct-icp, and a simple **degradation detection**.
 
 - [Video-Bilibili](https://www.bilibili.com/video/BV1CP411k7hE/?spm_id_from=333.999.0.0&vd_source=438f630fe29bd5049b24c7f05b1bcaa3)
   
@@ -85,20 +85,23 @@ Clone the repository and catkin_make:
 ```export PCL_ROOT={CUSTOM_PCL_PATH}```
   
 ## 3. Directly run
-Noted:
 
-A. Please make sure the IMU and LiDAR are **Synchronized**, that's important.
+**Noted:**
 
-B. The warning message "Failed to find match for field 'time'." means the timestamps of each LiDAR points are missed in the rosbag file. That is important for the forward propagation and backwark propagation.
+**A**. Please make sure the IMU and LiDAR are **Synchronized**, that's important.
 
-C. Before run with **NCLT** dataset, you should change time-scale in **cloud_convert.cpp**( static double tm_scale = 1e6)
+**B**. The warning message "Failed to find match for field 'time'." means the timestamps of each LiDAR points are missed in the rosbag file. That is important for the forward propagation and backwark propagation.
 
-D. You can run with a bag directly.
+**C**. Before run with **NCLT** dataset, you should change time-scale in **cloud_convert.cpp**( static double tm_scale = 1e6)
+
+**D**. Run with a bag directly.
 
 1. uncomment the node in the launch file with "main_eskf_rosbag"
 2. change the bag name in the ./apps/main_eskf_rosbag.cpp ,such as  'std::string bag_path_ = "/media/cc/robosense16/2023-04-16-21-39-59_new.bag";'
 3. re compile the code
 4. run with launch file
+
+**E**. change analytical derivation and automatic derivation in **./lio/lidarodom.cpp**  with #define USE_ANALYTICAL_DERIVATE 
 
 
 ## 4. Rosbag Example
