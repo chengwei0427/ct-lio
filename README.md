@@ -140,5 +140,8 @@ python3 ./scripts/all_time.py
 
 
 
-## Acknowledgments
+## TBD
+1. Fuse relative pose from other odometry as measurement in the update process when degenration is detected.
+2. Add **zupt** when zero velocity is detected.
+3. More experiments.
 
