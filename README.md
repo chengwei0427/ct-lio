@@ -56,7 +56,7 @@ CT-LIO: Continuous-Time LiDAR-Inertial Odometry
 ### 1.1 **Ubuntu** and **ROS**
 **Ubuntu >= 18.04**
 
-For **Ubuntu 18.04 or higher**, the **default** PCL and Eigen is enough for PV-LIO to work normally.
+For **Ubuntu 18.04 or higher**, the **default** PCL and Eigen is enough for ct_lio to work normally.
 
 ROS    >= Melodic. [ROS Installation](http://wiki.ros.org/ROS/Installation)
 

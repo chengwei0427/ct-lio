@@ -1,0 +1,3 @@
+## TBD
+1. Fuse relative pose from other odometry as measurement in the update process when degenration is detected.
+2. Add **zupt** when zero velocity is detected.
