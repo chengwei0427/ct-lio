@@ -93,6 +93,13 @@ B. The warning message "Failed to find match for field 'time'." means the timest
 
 C. Before run with **NCLT** dataset, you should change time-scale in **cloud_convert.cpp**( static double tm_scale = 1e6)
 
+D. You can run with a bag directly.
+
+1. uncomment the node in the launch file with "main_eskf_rosbag"
+2. change the bag name in the ./apps/main_eskf_rosbag.cpp ,such as  'std::string bag_path_ = "/media/cc/robosense16/2023-04-16-21-39-59_new.bag";'
+3. re compile the code
+4. run with launch file
+
 
 ## 4. Rosbag Example
 ### 4.1 Robosense 16 Rosbag 
