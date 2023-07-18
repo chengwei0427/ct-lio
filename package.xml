@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<package>
+  <name>ct_lio</name>
+  <version>0.0.0</version>
+
+  <description>
+    This work is created based on some optimization on ALOAM by HKUST and LOAM by CMU
+  </description>
+
+  <maintainer email="960732491@qq.com">chengwei</maintainer>
+
+  <license>BSD</license>
+  <url>https:*</url>
+  <author email="960732491@qq.com">chengwei</author>
+  
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>nav_msgs</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>rospy</build_depend>
+  <build_depend>std_msgs</build_depend>  
+  <build_depend>rosbag</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+  <build_depend>tf</build_depend>
+  <build_depend>eigen_conversions</build_depend>
+  <build_depend>message_generation</build_depend>
+  <build_depend>message_runtime</build_depend>
+  <run_depend>message_generation</run_depend>
+  <run_depend>message_runtime</run_depend>
+  <run_depend>geometry_msgs</run_depend>
+  <run_depend>nav_msgs</run_depend>
+  <run_depend>sensor_msgs</run_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>rospy</run_depend>
+  <run_depend>std_msgs</run_depend>
+  <run_depend>rosbag</run_depend>
+  <run_depend>tf</run_depend>
+  <run_depend>eigen_conversions</run_depend>
+
+  <export>
+  </export>
+</package>
