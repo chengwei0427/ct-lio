@@ -1,7 +1,7 @@
 # ct-lio
 CT-LIO: Continuous-Time LiDAR-Inertial Odometry
 
-**ct-lio** (Continuous-Time LiDAR-Inertial Odometry) is an accurate and robust LiDAR-inertial odometry (LIO). It fuses LiDAR constraints(ct-icp) with IMU data using ESKF(loose couple) to allow robost localizate in fast moton (as lio-sam). Besides, provide analytical derivation and automatic derivation for ct-icp.
+**ct-lio** (Continuous-Time LiDAR-Inertial Odometry) is an accurate and robust LiDAR-inertial odometry (LIO). It fuses LiDAR constraints(ct-icp) with IMU data using ESKF(loose couple) to allow robost localizate in fast moton (as lio-sam). Besides, we provide analytical derivation and automatic derivation for ct-icp, and a simple degradation detection.
 
 - [Video-Bilibili](https://www.bilibili.com/video/BV1CP411k7hE/?spm_id_from=333.999.0.0&vd_source=438f630fe29bd5049b24c7f05b1bcaa3)
   
@@ -43,12 +43,13 @@ CT-LIO: Continuous-Time LiDAR-Inertial Odometry
 
 **Right**: direct_lidar_inertial_odometry
 
-<img src="doc/compare_with_dlio.png" /> 
+<img src="doc/compare_with_dlio.png" width=60%/> 
 
 #### Velodyne 16, LIO-SAM dataset
 
 (mode:CT + eskf)
-<img src="doc/casual_walk.png" /> 
+
+<img src="doc/casual_walk.png" width=60%/> 
 
 ## 1. Prerequisites
 
@@ -97,7 +98,7 @@ C. Before run with **NCLT** dataset, you should change time-scale in **cloud_con
 ### 4.1 Robosense 16 Rosbag 
 
 <div align="left">
-<img src="doc/staircase.png" width=95% />
+<img src="doc/staircase.png" width=60% />
 </div>
 
 Files: Can be downloaded from [Baidu Pan (password:4kpf)](https://pan.baidu.com/s/1VHIVYo2LAyFKzMzdilOZlQ) or [Google Drive](https://drive.google.com/drive/folders/1f-VQOORs1TA5pT-OO_7-rG0kW5F5UoGG?usp=sharing)
@@ -119,7 +120,7 @@ cd CT-LIO
 python3 ./scripts/all_time.py
 ```
 <div align="left">
-<img src="doc/ct_icp.png" width=47.5% /> <img src="doc/line_image.png" width=47.5% />
+<img src="doc/ct_icp.png" width=45% /> <img src="doc/line_image.png" width=45% />
 </div>
 
 ## Related Works
