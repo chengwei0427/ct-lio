@@ -48,8 +48,8 @@ void velodyneHandler(const sensor_msgs::PointCloud2::ConstPtr &msg)
                                        "laser convert");
 
         zjloc::common::Timer::Evaluate([&]() { // boost::mt19937_64 g;
-            // double sample_size = lio->getIndex() < 20 ? 0.1 : 0.3;
-            double sample_size = 0.05;
+            double sample_size = lio->getIndex() < 20 ? 0.1 : 0.3;
+            // double sample_size = 0.05;
             std::mt19937_64 g;
             std::shuffle(cloud_out.begin(), cloud_out.end(), g);
             subSampleFrame(cloud_out, sample_size);
