@@ -32,37 +32,37 @@ while i < d:
 #   指定需要显示的数据
 plot_list=[0,1,2,3,4,5,6,7,8,9,10]
 
-#   画折线图
-# for i in plot_list:
-#     plt.plot(alldata[i],color_vec[i],label=data0[0][i])
-
-# #   显示网格
-# plt.grid(linestyle=":", color="r")
-
-
-# plt.legend(loc='best')
-
-# plt.xlabel('Sample')
-# plt.ylabel('Time(ms)')
-# plt.title('Time Comparison')
-
-#   画箱线图
-data_for_box = []
+#   画折线图 (un-comment bellow code for line image)
 for i in plot_list:
-    data_for_box.append(alldata[i])
+    plt.plot(alldata[i],color_vec[i],label=data0[0][i])
 
-label_box = [data0[0][d] for d in plot_list]
+#   显示网格
+plt.grid(linestyle=":", color="r")
 
-plt.grid(True)
-plt.boxplot(data_for_box,
-            medianprops = {'color': 'red'}, #   中值
-            meanline = True,    
-            showmeans = True,
-            meanprops = {'color': 'blue', 'ls':'--'},# 均值
-            flierprops = {"marker": "*", "markerfacecolor": "red"}, # 异常值绘制
-            # vert = False,   #   横着还是竖着
-            # showfliers = False, #   是否显示异常值
-            patch_artist=True,boxprops={'facecolor': 'green', 'edgecolor': 'black'}, # box属性
-            labels = label_box)
+
+plt.legend(loc='best')
+
+plt.xlabel('Sample')
+plt.ylabel('Time(ms)')
+plt.title('Time Comparison')
+
+#   画箱线图 (un-comment bellow code for box image)
+# data_for_box = []
+# for i in plot_list:
+#     data_for_box.append(alldata[i])
+
+# label_box = [data0[0][d] for d in plot_list]
+
+# plt.grid(True)
+# plt.boxplot(data_for_box,
+#             medianprops = {'color': 'red'}, #   中值
+#             meanline = True,    
+#             showmeans = True,
+#             meanprops = {'color': 'blue', 'ls':'--'},# 均值
+#             flierprops = {"marker": "*", "markerfacecolor": "red"}, # 异常值绘制
+#             # vert = False,   #   横着还是竖着
+#             # showfliers = False, #   是否显示异常值
+#             patch_artist=True,boxprops={'facecolor': 'green', 'edgecolor': 'black'}, # box属性
+#             labels = label_box)
 
 plt.show()

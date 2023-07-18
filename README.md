@@ -111,6 +111,17 @@ cd YOUR_BAG_DOWNLOADED_PATH
 rosbag play *
 ```
 
+### 4.2 Time analysis
+
+There is a time log file in **./log/** after run the code. we can plot the time with the scripts.
+```
+cd CT-LIO
+python3 ./scripts/all_time.py
+```
+<div align="left">
+<img src="doc/ct_icp.png" width=47.5% /> <img src="doc/line_image.png" width=47.5% />
+</div>
+
 ## Related Works
 1. [ct_icp](https://github.com/jedeschaud/ct_icp):  Continuous-Time LiDAR Odometry .
 2. [slam_in_autonomous_driving](https://github.com/gaoxiang12/slam_in_autonomous_driving): SLAM in Autonomous Driving book
