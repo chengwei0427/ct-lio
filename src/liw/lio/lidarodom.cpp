@@ -1098,8 +1098,8 @@ namespace zjloc
                // 噪声由初始化器估计
                // options.gyro_var_ = sqrt(imu_init_.GetCovGyro()[0]);
                // options.acce_var_ = sqrt(imu_init_.GetCovAcce()[0]);
-               options.update_bias_acce_ = false;
-               options.update_bias_gyro_ = false;
+               // options.update_bias_acce_ = false;
+               // options.update_bias_gyro_ = false;
                eskf_.SetInitialConditions(options, imu_init_.GetInitBg(), imu_init_.GetInitBa(), imu_init_.GetGravity());
                imu_need_init_ = false;
 
