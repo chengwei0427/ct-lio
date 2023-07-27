@@ -51,6 +51,9 @@ CT-LIO: Continuous-Time LiDAR-Inertial Odometry
 
 <img src="doc/casual_walk.png" width=60%/> 
 
+## Update
+- 2023.07.27: A tight-coupled [hm-lio](https://github.com/chengwei0427/hm-lio) is released. It is a hash-map based lio.
+
 ## 1. Prerequisites
 
 ### 1.1 **Ubuntu** and **ROS**
@@ -120,7 +123,7 @@ Files: Can be downloaded from [Baidu Pan (password:4kpf)](https://pan.baidu.com/
 
 Run:
 ```
-roslaunch sr_lio run_eskf.launch
+roslaunch ct_lio run_eskf.launch
 cd YOUR_BAG_DOWNLOADED_PATH
 rosbag play *
 ```
