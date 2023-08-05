@@ -3,56 +3,75 @@ CT-LIO: Continuous-Time LiDAR-Inertial Odometry
 
 **ct-lio** (Continuous-Time LiDAR-Inertial Odometry) is an accurate and robust LiDAR-inertial odometry (LIO). It fuses LiDAR constraints(ct-icp) with IMU data using ESKF(loose couple) to allow robost localizate in fast motion (as lio-sam). Besides, we provide **analytical derivation and automatic derivation** for ct-icp, and a simple **degradation detection**.
 
-- [Video-Bilibili](https://www.bilibili.com/video/BV1CP411k7hE/?spm_id_from=333.999.0.0&vd_source=438f630fe29bd5049b24c7f05b1bcaa3)
+<!-- - [Video-Bilibili](https://www.bilibili.com/video/BV1CP411k7hE/?spm_id_from=333.999.0.0&vd_source=438f630fe29bd5049b24c7f05b1bcaa3) -->
   
-<img src="doc/road.gif" /> 
+<div align="center">
+    <a href="https://www.bilibili.com/video/BV1CP411k7hE/?spm_id_from=333.999.0.0&vd_source=438f630fe29bd5049b24c7f05b1bcaa3" target="_blank">
+    <img src="doc/road.gif" width=80% />
+</div>
 
+## Update
+- 2023.08.05: voxelmap based ct_lio will upload later.
+
+<div align="center">
+    <a href="https://www.bilibili.com/video/BV1rX4y1j7ur/?spm_id_from=333.999.0.0&vd_source=438f630fe29bd5049b24c7f05b1bcaa3" target="_blank">
+    <img src="doc/vm.png" width=80% />
+</div>
+
+- 2023.07.27: A tight-coupled [hm-lio](https://github.com/chengwei0427/hm-lio) is released. It is a hash-map based lio.
 
 ### Some test results are show below:
 
 #### Velodyne 32, NCLT dataset
 (mode:normal + eskf)
-- [Video-Bilibili](https://www.bilibili.com/video/BV15s4y1F79a/?spm_id_from=333.999.0.0&vd_source=438f630fe29bd5049b24c7f05b1bcaa3)
+<!-- - [Video-Bilibili](https://www.bilibili.com/video/BV15s4y1F79a/?spm_id_from=333.999.0.0&vd_source=438f630fe29bd5049b24c7f05b1bcaa3) -->
 
-<img src="doc/nclt.gif" /> 
+<div align="center">
+    <a href="https://www.bilibili.com/video/BV15s4y1F79a/?spm_id_from=333.999.0.0&vd_source=438f630fe29bd5049b24c7f05b1bcaa3" target="_blank">
+    <img src="doc/nclt.gif" width=80% />
+</div>
 
 #### Ouster-32, multi-layer office 
-- [Video-Bilibili](https://www.bilibili.com/video/BV1g14y1U7R4/?spm_id_from=333.999.0.0&vd_source=438f630fe29bd5049b24c7f05b1bcaa3)
+<!-- - [Video-Bilibili](https://www.bilibili.com/video/BV1g14y1U7R4/?spm_id_from=333.999.0.0&vd_source=438f630fe29bd5049b24c7f05b1bcaa3) -->
   
 **Left**: ours (mode:normal + eskf)
 
 **Right**: fast-lio2
 
-<img src="doc/m-office.gif" /> 
+<div align="center">
+    <a href="https://www.bilibili.com/video/BV1g14y1U7R4/?spm_id_from=333.999.0.0&vd_source=438f630fe29bd5049b24c7f05b1bcaa3" target="_blank">
+    <img src="doc/m-office.gif" width=80% />
+</div>
+
 
 
 #### Robosense RS16, staircase_crazy_rotation dataset
-- [Video-Bilibili](https://www.bilibili.com/video/BV19m4y1E7ry/?spm_id_from=333.999.0.0&vd_source=438f630fe29bd5049b24c7f05b1bcaa3)
+<!-- - [Video-Bilibili](https://www.bilibili.com/video/BV19m4y1E7ry/?spm_id_from=333.999.0.0&vd_source=438f630fe29bd5049b24c7f05b1bcaa3) -->
 
 **Left**: PV_LIO
 
 **Right**: ours (mode:normal + eskf)
 
-- [Video-Bilibili](https://www.bilibili.com/video/BV19m4y1E7ry/?spm_id_from=333.999.0.0&vd_source=438f630fe29bd5049b24c7f05b1bcaa3)
+<div align="center">
+    <a href="https://www.bilibili.com/video/BV19m4y1E7ry/?spm_id_from=333.999.0.0&vd_source=438f630fe29bd5049b24c7f05b1bcaa3" target="_blank">
+    <img src="doc/mm-layer.gif" width=80% />
+</div>
   
-<img src="doc/mm-layer.gif"/> 
-
 
 #### Velodyne 16, LIO-SAM dataset
 **Left**: ours (mode:normal + eskf)
 
 **Right**: direct_lidar_inertial_odometry
 
-<img src="doc/compare_with_dlio.png" width=60%/> 
+<img src="doc/compare_with_dlio.png" width=80%/> 
 
 #### Velodyne 16, LIO-SAM dataset
 
 (mode:CT + eskf)
 
-<img src="doc/casual_walk.png" width=60%/> 
+<img src="doc/casual_walk.png" width=80%/> 
 
-## Update
-- 2023.07.27: A tight-coupled [hm-lio](https://github.com/chengwei0427/hm-lio) is released. It is a hash-map based lio.
+
 
 ## 1. Prerequisites
 
