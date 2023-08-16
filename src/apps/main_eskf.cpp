@@ -35,7 +35,28 @@ zjloc::CloudConvert *convert;
 DEFINE_string(config_yaml, "./config/mapping.yaml", "配置文件");
 #define DEBUG_FILE_DIR(name) (std::string(std::string(ROOT_DIR) + "log/" + name))
 
-void velodyneHandler(const sensor_msgs::PointCloud2::ConstPtr &msg)
+void livox_pcl_cbk(const livox_ros_driver::CustomMsg::ConstPtr &msg)
+{
+
+    std::vector<point3D> cloud_out;
+    zjloc::common::Timer::Evaluate([&]()
+                                   { convert->Process(msg, cloud_out); },
+                                   "laser convert");
+
+    zjloc::common::Timer::Evaluate([&]()
+                                   { 
+        double sample_size = lio->getIndex() < 20 ? 0.01 : 0.1;
+        // double sample_size = 0.01;
+        std::mt19937_64 g;
+        std::shuffle(cloud_out.begin(), cloud_out.end(), g);
+        subSampleFrame(cloud_out, sample_size);
+        std::shuffle(cloud_out.begin(), cloud_out.end(), g); },
+                                   "laser ds");
+
+    lio->pushData(cloud_out, std::make_pair(msg->header.stamp.toSec(), convert->getTimeSpan()));
+}
+
+void standard_pcl_cbk(const sensor_msgs::PointCloud2::ConstPtr &msg)
 {
 
     sensor_msgs::PointCloud2::Ptr cloud(new sensor_msgs::PointCloud2(*msg));
@@ -204,7 +225,9 @@ int main(int argc, char **argv)
     std::string laser_topic = yaml["common"]["lid_topic"].as<std::string>();
     std::string imu_topic = yaml["common"]["imu_topic"].as<std::string>();
 
-    ros::Subscriber subLaserCloud = nh.subscribe<sensor_msgs::PointCloud2>(laser_topic, 100, velodyneHandler);
+    ros::Subscriber subLaserCloud = convert->lidar_type_ == zjloc::CloudConvert::LidarType::AVIA
+                                        ? nh.subscribe(laser_topic, 100, livox_pcl_cbk)
+                                        : nh.subscribe<sensor_msgs::PointCloud2>(laser_topic, 100, standard_pcl_cbk);
 
     ros::Subscriber sub_imu_ori = nh.subscribe<sensor_msgs::Imu>(imu_topic, 500, imuHandler);
 

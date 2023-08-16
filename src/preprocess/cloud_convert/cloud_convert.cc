@@ -7,10 +7,11 @@
 namespace zjloc
 {
 
-    // void CloudConvert::Process(const livox_ros_driver::CustomMsg::ConstPtr &msg, FullCloudPtr &pcl_out) {
-    //     AviaHandler(msg);
-    //     *pcl_out = cloud_out_;
-    // }
+    void CloudConvert::Process(const livox_ros_driver::CustomMsg::ConstPtr &msg, std::vector<point3D> &pcl_out)
+    {
+        AviaHandler(msg);
+        pcl_out = cloud_out_;
+    }
 
     void CloudConvert::Process(const sensor_msgs::PointCloud2::ConstPtr &msg,
                                std::vector<point3D> &pcl_out)
@@ -36,49 +37,53 @@ namespace zjloc
         pcl_out = cloud_out_;
     }
 
-    /*void CloudConvert::AviaHandler(const livox_ros_driver::CustomMsg::ConstPtr &msg)
+    void CloudConvert::AviaHandler(const livox_ros_driver::CustomMsg::ConstPtr &msg)
     {
         cloud_out_.clear();
         cloud_full_.clear();
         int plsize = msg->point_num;
-
         cloud_out_.reserve(plsize);
-        cloud_full_.resize(plsize);
 
-        std::vector<bool> is_valid_pt(plsize, false);
-        std::vector<uint> index(plsize - 1);
-        for (uint i = 0; i < plsize - 1; ++i)
+        static double tm_scale = 1e9;
+
+        double headertime = msg->header.stamp.toSec();
+        timespan_ = msg->points.back().offset_time / tm_scale;
+
+        // std::cout << "span:" << timespan_ << ",0: " << msg->points[0].offset_time / tm_scale
+        //           << " , 100: " << msg->points[100].offset_time / tm_scale << std::endl;
+
+        for (int i = 0; i < plsize; i++)
         {
-            index[i] = i + 1; // 从1开始
-        }
+            if (!(std::isfinite(msg->points[i].x) &&
+                  std::isfinite(msg->points[i].y) &&
+                  std::isfinite(msg->points[i].z)))
+                continue;
 
-        std::for_each(std::execution::par_unseq, index.begin(), index.end(), [&](const uint &i)
-                      {
-        if ((msg->points[i].line < num_scans_) &&
-            ((msg->points[i].tag & 0x30) == 0x10 || (msg->points[i].tag & 0x30) == 0x00)) {
-            if (i % point_filter_num_ == 0) {
-                cloud_full_[i].x = msg->points[i].x;
-                cloud_full_[i].y = msg->points[i].y;
-                cloud_full_[i].z = msg->points[i].z;
-                cloud_full_[i].intensity = msg->points[i].reflectivity;
-                cloud_full_[i].time = msg->points[i].offset_time / float(1000000);
+            if (i % point_filter_num_ != 0)
+                continue;
 
-                if ((abs(cloud_full_[i].x - cloud_full_[i - 1].x) > 1e-7) ||
-                    (abs(cloud_full_[i].y - cloud_full_[i - 1].y) > 1e-7) ||
-                    (abs(cloud_full_[i].z - cloud_full_[i - 1].z) > 1e-7)) {
-                    is_valid_pt[i] = true;
-                }
-            }
-        } });
+            double range = msg->points[i].x * msg->points[i].x + msg->points[i].y * msg->points[i].y +
+                           msg->points[i].z * msg->points[i].z;
+            if (range > 150 * 150 || range < blind * blind)
+                continue;
 
-        for (uint i = 1; i < plsize; i++)
-        {
-            if (is_valid_pt[i])
+            if (/*(msg->points[i].line < N_SCANS) &&*/ ((msg->points[i].tag & 0x30) == 0x10 || (msg->points[i].tag & 0x30) == 0x00))
             {
-                cloud_out_.points.push_back(cloud_full_[i]);
+                point3D point_temp;
+                point_temp.raw_point = Eigen::Vector3d(msg->points[i].x, msg->points[i].y, msg->points[i].z);
+                point_temp.point = point_temp.raw_point;
+                point_temp.relative_time = msg->points[i].offset_time / tm_scale; // curvature unit: ms
+                point_temp.intensity = msg->points[i].reflectivity;
+
+                point_temp.timestamp = headertime + point_temp.relative_time;
+                point_temp.alpha_time = point_temp.relative_time / timespan_;
+                point_temp.timespan = timespan_;
+                point_temp.ring = msg->points[i].line;
+
+                cloud_out_.push_back(point_temp);
             }
         }
-    }*/
+    }
 
     void CloudConvert::Oust64Handler(const sensor_msgs::PointCloud2::ConstPtr &msg)
     {
@@ -107,14 +112,16 @@ namespace zjloc
             if (i % point_filter_num_ != 0)
                 continue;
 
+            double range = pl_orig.points[i].x * pl_orig.points[i].x + pl_orig.points[i].y * pl_orig.points[i].y +
+                           pl_orig.points[i].z * pl_orig.points[i].z;
+            if (range > 150 * 150 || range < blind * blind)
+                continue;
+
             point3D point_temp;
             point_temp.raw_point = Eigen::Vector3d(pl_orig.points[i].x, pl_orig.points[i].y, pl_orig.points[i].z);
             point_temp.point = point_temp.raw_point;
             point_temp.relative_time = pl_orig.points[i].t / tm_scale; // curvature unit: ms
             point_temp.intensity = pl_orig.points[i].intensity;
-
-            double range = pl_orig.points[i].x * pl_orig.points[i].x + pl_orig.points[i].y * pl_orig.points[i].y +
-                           pl_orig.points[i].z * pl_orig.points[i].z;
 
             point_temp.timestamp = headertime + point_temp.relative_time;
             point_temp.alpha_time = point_temp.relative_time / timespan_;
@@ -166,7 +173,7 @@ namespace zjloc
 
             double range = pl_orig.points[i].x * pl_orig.points[i].x + pl_orig.points[i].y * pl_orig.points[i].y +
                            pl_orig.points[i].z * pl_orig.points[i].z;
-            if (range > 150 * 150)
+            if (range > 150 * 150 || range < blind * blind)
                 continue;
 
             point3D point_temp;
@@ -199,7 +206,7 @@ namespace zjloc
 
         double headertime = msg->header.stamp.toSec();
 
-        static double tm_scale = 1e6; //   1e6 - nclt kaist or 1
+        static double tm_scale = 1; //   1e6 - nclt kaist or 1
 
         //  FIXME:  nclt 及kaist时间戳大于0.1
         auto time_list_velodyne = [&](velodyne_ros::Point &point_1, velodyne_ros::Point &point_2)
@@ -227,7 +234,7 @@ namespace zjloc
 
             double range = pl_orig.points[i].x * pl_orig.points[i].x + pl_orig.points[i].y * pl_orig.points[i].y +
                            pl_orig.points[i].z * pl_orig.points[i].z;
-            if (range > 150 * 150)
+            if (range > 150 * 150 || range < blind * blind)
                 continue;
 
             point3D point_temp;
@@ -251,6 +258,7 @@ namespace zjloc
         int lidar_type = yaml["preprocess"]["lidar_type"].as<int>();
 
         point_filter_num_ = yaml["preprocess"]["point_filter_num"].as<int>();
+        blind = yaml["preprocess"]["blind"].as<double>();
 
         if (lidar_type == 1)
         {

@@ -11,6 +11,8 @@
 
 #include "common/eigen_types.h"
 
+#include <livox_ros_driver/CustomMsg.h>
+
 namespace zjloc
 {
 
@@ -80,6 +82,22 @@ POINT_CLOUD_REGISTER_POINT_STRUCT(zjloc::FullPointType,
                                   (float, x, x)(float, y, y)(float, z, z)(float, range, range)(float, radius, radius)(
                                       std::uint8_t, intensity, intensity)(std::uint16_t, angle, angle)(
                                       std::uint8_t, ring, ring)(double, time, time)(float, height, height))
+
+namespace liovx_ros
+{
+    struct EIGEN_ALIGN16 Point
+    {
+        PCL_ADD_POINT4D
+        PCL_ADD_INTENSITY;
+        float time;
+        uint16_t ring;
+        uint16_t tag;
+        EIGEN_MAKE_ALIGNED_OPERATOR_NEW
+    };
+}
+POINT_CLOUD_REGISTER_POINT_STRUCT(liovx_ros::Point,
+                                  (float, x, x)(float, y, y)(float, z, z)(float, intensity, intensity)(
+                                      float, time, time)(uint16_t, ring, ring)(uint16_t, tag, tag))
 
 namespace velodyne_ros
 {

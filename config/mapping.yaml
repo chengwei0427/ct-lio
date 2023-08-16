@@ -2,16 +2,17 @@ YAML: 1.0
 
 preprocess:
   point_filter_num: 1
-  lidar_type: 4 #2-velodyne 3-ouster  4-robosense
+  lidar_type: 1  # 1-AVIA 2-velodyne 3-ouster  4-robosense
+  blind: 0.1
 
 max_iteration: 10
 common:
-  imu_topic: /gps/gtimu #/imu_raw   /gps/gtimu
-  lid_topic: /rslidar_points  #/points_raw  /rslidar_points
-  time_sync_en: false
+  imu_topic: /livox/imu #/imu_raw   /gps/gtimu
+  lid_topic: /livox/lidar  #/points_raw  /rslidar_points /velodyne_points
+
 mapping:
   extrinsic_est_en: true
-  extrinsic_T: [ 0.112, 0.176, -0.247]
+  extrinsic_T: [ 0.0, 0.0, -0.0]
   extrinsic_R: [ 1, 0, 0,  0, 1, 0,  0, 0, 1]
 
 delay_time: 0.15

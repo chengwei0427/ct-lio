@@ -265,6 +265,7 @@ namespace zjloc
                     dist += (t - last_t).norm();
                     last_t = t;
                     pub_data_to_ros(laser_topic, dist, 0);
+                    // std::cout << eskf_.GetGravity().transpose() << std::endl;
                } },
                                          "pub cloud");
 
@@ -1064,6 +1065,7 @@ namespace zjloc
      {
           // auto &cloud = measures_.lidar_;
           auto imu_state = eskf_.GetNominalState(); // 最后时刻的状态
+          // std::cout << __FUNCTION__ << ", " << imu_state.timestamp_ << std::endl;
           SE3 T_end = SE3(imu_state.R_, imu_state.p_);
 
           /// 将所有点转到最后时刻状态上

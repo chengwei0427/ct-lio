@@ -1,6 +1,6 @@
 #pragma once
 
-// #include <livox_ros_driver/CustomMsg.h>
+#include <livox_ros_driver/CustomMsg.h>
 #include <pcl_conversions/pcl_conversions.h>
 
 #include <pcl/point_cloud.h>
@@ -40,6 +40,7 @@ namespace zjloc
          * @param pcl_out
          */
         // void Process(const livox_ros_driver::CustomMsg::ConstPtr &msg, FullCloudPtr &pcl_out);
+        void Process(const livox_ros_driver::CustomMsg::ConstPtr &msg, std::vector<point3D> &pcl_out);
 
         /**
          * 处理sensor_msgs::PointCloud2点云
@@ -55,16 +56,19 @@ namespace zjloc
         //  返回激光的时间
         double getTimeSpan() { return timespan_; }
 
+        LidarType lidar_type_ = LidarType::AVIA; // 雷达类型
+
     private:
-        // void AviaHandler(const livox_ros_driver::CustomMsg::ConstPtr &msg);
+        void AviaHandler(const livox_ros_driver::CustomMsg::ConstPtr &msg);
         void Oust64Handler(const sensor_msgs::PointCloud2::ConstPtr &msg);
         void VelodyneHandler(const sensor_msgs::PointCloud2::ConstPtr &msg);
         void RobosenseHandler(const sensor_msgs::PointCloud2::ConstPtr &msg);
 
         // FullPointCloudType cloud_full_, cloud_out_; // 输出点云
         std::vector<point3D> cloud_full_, cloud_out_; //  输出点云
-        LidarType lidar_type_ = LidarType::AVIA;      // 雷达类型
-        int point_filter_num_ = 1;                    // 跳点
+
+        int point_filter_num_ = 1; // 跳点
+        double blind = 0.1;
 
         double timespan_;
     };

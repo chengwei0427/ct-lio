@@ -11,6 +11,11 @@ CT-LIO: Continuous-Time LiDAR-Inertial Odometry
 </div>
 
 ## Update
+- 2023.08.16: support Livox serials LiDAR.
+  <div align="center">
+    <!-- <a href="https://www.bilibili.com/video/BV1rX4y1j7ur/?spm_id_from=333.999.0.0&vd_source=438f630fe29bd5049b24c7f05b1bcaa3" target="_blank"> -->
+    <img src="doc/hku_avia.png" width=60% />
+</div>
 - 2023.08.05: voxelmap based ct_lio will upload later.
 
 <div align="center">
