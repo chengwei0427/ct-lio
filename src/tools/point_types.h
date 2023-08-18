@@ -161,4 +161,20 @@ POINT_CLOUD_REGISTER_POINT_STRUCT(ouster_ros::Point,
                                       (std::uint32_t, range, range)
 )
 // clang-format on
+
+namespace pandar_ros
+{
+    struct EIGEN_ALIGN16 Point
+    {
+        PCL_ADD_POINT4D;
+        float intensity;
+        double timestamp;
+        uint16_t ring;
+        EIGEN_MAKE_ALIGNED_OPERATOR_NEW
+    };
+}
+POINT_CLOUD_REGISTER_POINT_STRUCT(pandar_ros::Point,
+                                  (float, x, x)(float, y, y)(float, z, z)(float, intensity, intensity)(
+                                      double, timestamp, timestamp)(uint16_t, ring, ring))
+
 #endif // SLAM_IN_AUTO_DRIVING_POINT_TYPES_H

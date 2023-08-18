@@ -25,6 +25,7 @@ namespace zjloc
      {
           double surf_res;
           bool log_print;
+          int max_num_iteration;
           //   ct_icp
           IcpModel icpmodel;
           double size_voxel_map;

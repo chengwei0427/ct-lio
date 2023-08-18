@@ -45,7 +45,7 @@ void livox_pcl_cbk(const livox_ros_driver::CustomMsg::ConstPtr &msg)
 
     zjloc::common::Timer::Evaluate([&]()
                                    { 
-        double sample_size = lio->getIndex() < 20 ? 0.01 : 0.1;
+        double sample_size = lio->getIndex() < 20 ? 0.01 : 0.01;
         // double sample_size = 0.01;
         std::mt19937_64 g;
         std::shuffle(cloud_out.begin(), cloud_out.end(), g);
@@ -69,7 +69,7 @@ void standard_pcl_cbk(const sensor_msgs::PointCloud2::ConstPtr &msg)
                                        "laser convert");
 
         zjloc::common::Timer::Evaluate([&]() { // boost::mt19937_64 g;
-            double sample_size = lio->getIndex() < 20 ? 0.1 : 0.3;
+            double sample_size = lio->getIndex() < 20 ? 0.01 : 0.05;
             // double sample_size = 0.05;
             std::mt19937_64 g;
             std::shuffle(cloud_out.begin(), cloud_out.end(), g);

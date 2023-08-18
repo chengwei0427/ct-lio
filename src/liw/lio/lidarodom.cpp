@@ -27,6 +27,7 @@ namespace zjloc
           auto yaml = YAML::LoadFile(config_yaml_);
           options_.surf_res = yaml["odometry"]["surf_res"].as<double>();
           options_.log_print = yaml["odometry"]["log_print"].as<bool>();
+          options_.max_num_iteration = yaml["odometry"]["max_num_iteration"].as<int>();
 
           options_.size_voxel_map = yaml["odometry"]["size_voxel_map"].as<double>();
           options_.min_distance_points = yaml["odometry"]["min_distance_points"].as<double>();
@@ -366,8 +367,7 @@ namespace zjloc
                }
           };
 
-          int num_iter_icp = 6;
-          for (int iter(0); iter < num_iter_icp; iter++)
+          for (int iter(0); iter < options_.max_num_iteration; iter++)
           {
                transformKeypoints(surf_keypoints);
 

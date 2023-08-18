@@ -10,11 +10,19 @@ CT-LIO: Continuous-Time LiDAR-Inertial Odometry
     <img src="doc/road.gif" width=80% />
 </div>
 
+
+## NOTE: Click on the image to view the corresponding video.
+
 ## Update
+- 2023.08.18: Test with ICCV2023  challenge (SubT_MRS_Final_Challenge_UGV1)
+    <div align="center">
+    <!-- <a href="https://www.bilibili.com/video/BV1rX4y1j7ur/?spm_id_from=333.999.0.0&vd_source=438f630fe29bd5049b24c7f05b1bcaa3" target="_blank"> -->
+    <img src="doc/iccv2023_final_UGV1.gif" width=80% />
+</div>
 - 2023.08.16: support Livox serials LiDAR.
   <div align="center">
     <!-- <a href="https://www.bilibili.com/video/BV1rX4y1j7ur/?spm_id_from=333.999.0.0&vd_source=438f630fe29bd5049b24c7f05b1bcaa3" target="_blank"> -->
-    <img src="doc/hku_avia.png" width=60% />
+    <img src="doc/hku_avia.png" width=70% />
 </div>
 - 2023.08.05: voxelmap based ct_lio will upload later.
 

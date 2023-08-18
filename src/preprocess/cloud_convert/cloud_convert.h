@@ -29,6 +29,7 @@ namespace zjloc
             VELO32,      // Velodyne 32线
             OUST64,      // ouster 64线
             ROBOSENSE16, //  速腾16线
+            PANDAR,
         };
 
         CloudConvert() = default;
@@ -63,6 +64,7 @@ namespace zjloc
         void Oust64Handler(const sensor_msgs::PointCloud2::ConstPtr &msg);
         void VelodyneHandler(const sensor_msgs::PointCloud2::ConstPtr &msg);
         void RobosenseHandler(const sensor_msgs::PointCloud2::ConstPtr &msg);
+        void PandarHandler(const sensor_msgs::PointCloud2::ConstPtr &msg);
 
         // FullPointCloudType cloud_full_, cloud_out_; // 输出点云
         std::vector<point3D> cloud_full_, cloud_out_; //  输出点云
