@@ -154,6 +154,7 @@ Files: Can be downloaded from [Baidu Pan (password:4kpf)](https://pan.baidu.com/
 
 **Noted**
   - For this narrow staircases, should adjust the params(such as surf_res etc.) before run the program.
+  - mapping.yaml is [here](https://github.com/chengwei0427/ct-lio/issues/2#issuecomment-1639878868)
   - make sure the external params are correct [ISSUE #2](https://github.com/chengwei0427/ct-lio/issues/2)
   - un-comment the code for staircase.bag [lio->pushData()](https://github.com/chengwei0427/ct-lio/blob/a05af59c032ff08df6905b06d2776a753d187741/src/apps/main_eskf.cpp#L60) (The lidar header timestamp of this dataset is the frame end.)
 
