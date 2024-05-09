@@ -1,7 +1,7 @@
 # ct-lio
 CT-LIO: Continuous-Time LiDAR-Inertial Odometry
 
-**ct-lio** (Continuous-Time LiDAR-Inertial Odometry) is an accurate and robust LiDAR-inertial odometry (LIO). It fuses LiDAR constraints(ct-icp) with IMU data using ESKF(loose couple) to allow robost localizate in fast motion (as lio-sam). Besides, we provide **analytical derivation and automatic derivation** for ct-icp, and a simple **degradation detection**.
+**ct-lio** (Continuous-Time LiDAR-Inertial Odometry) is an accurate and robust LiDAR-inertial odometry (LIO). It fuses LiDAR constraints(ct-icp) with IMU data using ESKF(loose couple) to allow robost localizate in fast motion (as lio-sam). Besides, we provide **analytical derivation and automatic derivation** for ct-icp, and a simple **degradation detection**. In addition, our algorithm works very well on devices(lidar-imu) that are **not time-synchronized**.
 
 <!-- - [Video-Bilibili](https://www.bilibili.com/video/BV1CP411k7hE/?spm_id_from=333.999.0.0&vd_source=438f630fe29bd5049b24c7f05b1bcaa3) -->
   
@@ -127,7 +127,7 @@ Clone the repository and catkin_make:
 
 **Noted:**
 
-**A**. Please make sure the IMU and LiDAR are **Synchronized**, that's important.
+**A**. Please make sure that the lidar and imu **extrinsic parameters** are set correctly, that's important.
 
 **B**. The warning message "Failed to find match for field 'time'." means the timestamps of each LiDAR points are missed in the rosbag file. That is important for the forward propagation and backwark propagation.
 
